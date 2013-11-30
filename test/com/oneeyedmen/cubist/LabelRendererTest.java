@@ -14,7 +14,7 @@ public class LabelRendererTest {
 
     @Rule public ImageApprovalsRule approver = ImageApprovalsRule.fileSystemRule("test");
 
-    private LabelRenderer renderer = new LabelRenderer();
+    private final LabelRenderer renderer = new LabelRenderer();
     private final BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
     private final Graphics2D g = (Graphics2D) image.getGraphics();
 
