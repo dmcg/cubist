@@ -23,7 +23,8 @@ public class ContainerRendererTest {
         Container container = new Container();
         container.add(label("Hello"));
         container.add(label("World"));
-        renderer.render(container, g, 10, 30);
+        g.translate(10, 30);
+        renderer.render(container, g);
         approver.writeImage(image);
     }
 }

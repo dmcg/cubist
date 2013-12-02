@@ -16,13 +16,14 @@ public class LabelRendererTest {
     private final Graphics2D g = (Graphics2D) image.getGraphics();
 
     @Test public void render_text_0_0() throws IOException {
-        renderer.render(new Label(new LabelModel("Hello World")), g, 0, 0);
+        renderer.render(new Label(new LabelModel("Hello World")), g);
         approver.writeImage(image);
     }
 
 
     @Test public void render_text_10_30() throws IOException {
-        renderer.render(new Label(new LabelModel("Hello World")), g, 10, 30);
+        g.translate(10, 30);
+        renderer.render(new Label(new LabelModel("Hello World")), g);
         approver.writeImage(image);
     }
 }
