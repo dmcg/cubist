@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../braque/braque.iml" filepath="$PROJECT_DIR$/../braque/braque.iml" />
       <module fileurl="file://$PROJECT_DIR$/cubist.iml" filepath="$PROJECT_DIR$/cubist.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../approvals/okey-doke/okeydoke.iml" filepath="$PROJECT_DIR$/../../approvals/okey-doke/okeydoke.iml" />
     </modules>

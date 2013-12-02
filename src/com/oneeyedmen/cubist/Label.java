@@ -1,6 +1,7 @@
 package com.oneeyedmen.cubist;
 
 import java.awt.*;
+import java.awt.geom.Dimension2D;
 
 public class Label implements Paintable {
 
@@ -23,6 +24,11 @@ public class Label implements Paintable {
     @Override
     public void paintOn(Graphics2D g) {
         painter().paint(this, g);
+    }
+
+    @Override
+    public Dimension2D preferredSize(Graphics2D g) {
+        return painter().preferredSize(this, g);
     }
 
     protected LabelPainter painter() {
