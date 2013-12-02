@@ -6,10 +6,9 @@ import java.awt.geom.Dimension2D;
 public class HorizontalListPainter implements Painter<Container> {
 
     @Override public void paint(Container container, Graphics2D g) {
-        for (int i = 0; i < container.components().size(); i++) {
-            Container.PaintableAndContext each = container.components().get(i);
-            each.paintable.paintOn(g);
-            g.translate(each.paintable.preferredSize(g).getWidth(), 0);
+        for (Paintable paintable : container.components()) {
+            paintable.paintOn(g);
+            g.translate(paintable.preferredSize(g).getWidth(), 0);
         }
     }
 
