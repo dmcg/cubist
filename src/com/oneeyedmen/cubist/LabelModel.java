@@ -1,5 +1,7 @@
 package com.oneeyedmen.cubist;
 
+import com.google.common.collect.Lists;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
@@ -7,8 +9,9 @@ import java.util.List;
 
 public class LabelModel {
 
+    private final List<ChangeListener> listeners = Lists.newArrayListWithCapacity(1);
+
     private String text;
-    private final List<ChangeListener> listeners = new ArrayList<ChangeListener>(1);
 
     public LabelModel(String text) {
         this.text = text;

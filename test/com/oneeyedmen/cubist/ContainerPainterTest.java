@@ -9,12 +9,12 @@ import java.io.IOException;
 
 import static com.oneeyedmen.cubist.Label.label;
 
-public class ContainerRendererTest {
+public class ContainerPainterTest {
 
     @Rule
     public ImageApprovalsRule approver = ImageApprovalsRule.fileSystemRule("test");
 
-    private final ContainerRenderer renderer = new ContainerRenderer();
+    private final ContainerPainter painter = new ContainerPainter();
     private final BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
     private final Graphics2D g = (Graphics2D) image.getGraphics();
 
@@ -24,7 +24,7 @@ public class ContainerRendererTest {
         container.add(label("Hello"));
         container.add(label("World"));
         g.translate(10, 30);
-        renderer.render(container, g);
+        painter.paint(container, g);
         approver.writeImage(image);
     }
 }
