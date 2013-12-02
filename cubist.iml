@@ -20,6 +20,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="okeydoke" scope="TEST" />
+    <orderEntry type="library" name="Guava" level="project" />
   </component>
 </module>
 
