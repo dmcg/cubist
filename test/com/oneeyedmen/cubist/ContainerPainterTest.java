@@ -15,16 +15,15 @@ public class ContainerPainterTest {
     public ImageApprovalsRule approver = ImageApprovalsRule.fileSystemRule("test");
 
     private final ContainerPainter painter = new ContainerPainter();
-    private final BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
-    private final Graphics2D g = (Graphics2D) image.getGraphics();
 
     @Test
     public void no_layout() throws IOException {
         Container container = new Container();
         container.add(label("Hello"));
         container.add(label("World"));
-        g.translate(10, 30);
-        painter.paint(container, g);
-        approver.writeImage(image);
+
+        Graphics2D graphics = approver.graphics();
+        graphics.translate(10, 30);
+        painter.paint(container, graphics);
     }
 }
