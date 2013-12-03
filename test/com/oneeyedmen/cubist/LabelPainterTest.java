@@ -4,7 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class LabelPainterTest {
@@ -14,6 +13,6 @@ public class LabelPainterTest {
     private final LabelPainter painter = new LabelPainter();
 
     @Test public void render() throws IOException {
-        painter.paint(new Label(new LabelModel("Hello World")), approver.graphics());
+        painter.paint(new Label(new LabelModel("Hello World")), approver.graphics(), new Dimension(100, 100));
     }
 }

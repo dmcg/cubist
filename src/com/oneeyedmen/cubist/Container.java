@@ -30,12 +30,12 @@ public class Container implements Paintable {
     }
 
     @Override
-    public void paintOn(Graphics2D g) {
-        painter().paint(this, g);
+    public void paintOn(Graphics2D g, Dimension2D size) {
+        painter().paint(this, g, size);
     }
 
     @Override
-    public Dimension2D preferredSize(Graphics2D g) {
+    public Dimension preferredSize(Graphics2D g) {
         return painter().preferredSize(this, g);
     }
 

@@ -23,6 +23,6 @@ public class HorizontalListPainterTest {
         container.add(label("!"), null);
 
         Graphics2D graphics = approver.graphics();
-        painter.paint(container, graphics);
+        painter.paint(container, graphics, new Dimension(100, 100));
     }
 }
