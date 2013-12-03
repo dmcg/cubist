@@ -1,17 +1,9 @@
 package com.oneeyedmen.cubist;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.jmock.Expectations;
-import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestRule;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +11,8 @@ public class LabelModelTest {
 
     @Rule public final JUnitRuleMockery mockery = new JUnitRuleMockery();
 
-    private final ChangeListener listener = mockery.mock(ChangeListener.class);
+    @SuppressWarnings("unchecked")
+    private final ChangeListener<LabelModel> listener = mockery.mock(ChangeListener.class);
 
     private final LabelModel model = new LabelModel("Banana");
 
@@ -35,7 +28,7 @@ public class LabelModelTest {
 
         model.addListener(listener);
         mockery.checking(new Expectations() {{
-            oneOf(listener).stateChanged(with(aChangedEventWithSource(model)));
+            oneOf(listener).stateChanged(model);
         }});
         model.setText("Kumquat");
         assertEquals("Kumquat", model.text());
@@ -46,21 +39,8 @@ public class LabelModelTest {
         model.addListener(listener);
 
         mockery.checking(new Expectations() {{
-            never(listener).stateChanged(with(any(ChangeEvent.class)));
+            never(listener).stateChanged(with(any(LabelModel.class)));
         }});
         model.setText("Banana");
-    }
-
-    private Matcher<ChangeEvent> aChangedEventWithSource(final Object source) {
-        return new TypeSafeDiagnosingMatcher<ChangeEvent>() {
-            @Override
-            protected boolean matchesSafely(ChangeEvent item, Description mismatchDescription) {
-                return item.getSource().equals(source);
-            }
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("A ChangedEvent with source " + source);
-            }
-        };
     }
 }

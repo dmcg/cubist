@@ -2,14 +2,11 @@ package com.oneeyedmen.cubist;
 
 import com.google.common.collect.Lists;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LabelModel {
 
-    private final List<ChangeListener> listeners = Lists.newArrayListWithCapacity(1);
+    private final List<ChangeListener<LabelModel>> listeners = Lists.newArrayListWithExpectedSize(1);
 
     private String text;
 
@@ -21,20 +18,20 @@ public class LabelModel {
         return text;
     }
 
-    public void addListener(ChangeListener listener) {
+    public void addListener(ChangeListener<LabelModel> listener) {
         listeners.add(listener);
     }
 
     public void setText(String text) {
-        boolean changed = this.text() != text;
+        boolean changed = !this.text().equals(text);
         this.text = text;
         if (changed)
-            fireChangedEvent(new ChangeEvent(this));
+            notifyListeners();
     }
 
-    private void fireChangedEvent(ChangeEvent event) {
-        for (ChangeListener listener : listeners) {
-            listener.stateChanged(event);
+    private void notifyListeners() {
+        for (ChangeListener<LabelModel> listener : listeners) {
+            listener.stateChanged(this);
         }
     }
 }
