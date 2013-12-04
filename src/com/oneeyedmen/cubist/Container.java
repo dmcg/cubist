@@ -1,19 +1,17 @@
 package com.oneeyedmen.cubist;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.awt.*;
 import java.awt.geom.Dimension2D;
-import java.util.List;
 import java.util.Map;
 
 public class Container implements Paintable {
 
     private static final HorizontalListPainter DEFAULT_PAINTER = new HorizontalListPainter();
 
-    private final List<Paintable> components = Lists.newArrayListWithExpectedSize(4); // will be ListModel<Container>
+    private final ListModel<Paintable> components = new ListModel<Paintable>();
     private final Map<Paintable, Object> contexts = Maps.newHashMap();
 
     public void add(Paintable paintable, Object context) {
@@ -22,7 +20,7 @@ public class Container implements Paintable {
     }
 
     public ImmutableList<Paintable> components() {
-        return ImmutableList.copyOf(components);
+        return components.items();
     }
 
     public Object contextFor(Paintable paintable) {
