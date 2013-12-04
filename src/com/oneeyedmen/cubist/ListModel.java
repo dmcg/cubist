@@ -11,7 +11,7 @@ public class ListModel<T> {
     private final List<ListListener> listeners = Lists.newArrayListWithExpectedSize(1);
 
     public int size() {
-        return 0;
+        return items.size();
     }
 
     public void add(T item) {

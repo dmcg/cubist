@@ -25,6 +25,6 @@ public class ListModelTest {
             oneOf(listener).listChanged();
         }});
         model.add("one");
-        assertEquals(0, model.size());
+        assertEquals(1, model.size());
     }
 }
