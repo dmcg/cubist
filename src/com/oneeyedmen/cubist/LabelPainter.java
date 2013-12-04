@@ -6,9 +6,9 @@ import java.awt.geom.Dimension2D;
 
 public class LabelPainter implements Painter<Label> {
 
-    @Override public void paint(Label label, Graphics2D g, Dimension2D size) {
+    @Override public void paint(Label label, Graphics2D g, Dimension2D size, Palette palette) {
         Graphics2D newG = (Graphics2D) g.create();
-        newG.setColor(Color.BLACK);
+        palette.configure(newG);
         newG.translate(0, preferredSize(label, newG).getHeight());
         newG.drawString(label.model().text(), 0, 0);
     }

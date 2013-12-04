@@ -29,7 +29,7 @@ public class Container implements Paintable {
 
     @Override
     public void paintOn(Graphics2D g, Dimension2D size) {
-        painter().paint(this, g, size);
+        painter().paint(this, g, size, null);
     }
 
     @Override

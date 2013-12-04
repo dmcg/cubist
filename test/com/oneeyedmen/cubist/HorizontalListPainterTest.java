@@ -21,6 +21,6 @@ public class HorizontalListPainterTest {
         container.add(label("World"), null);
         container.add(label("!"), null);
 
-        painter.paint(container, approver.graphics(), approver.size());
+        painter.paint(container, approver.graphics(), approver.size(), null);
     }
 }

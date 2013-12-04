@@ -5,7 +5,7 @@ import java.awt.geom.Dimension2D;
 
 public class HorizontalListPainter implements Painter<Container> {
 
-    @Override public void paint(Container container, Graphics2D g, Dimension2D size) {
+    @Override public void paint(Container container, Graphics2D g, Dimension2D size, Palette palette) {
         for (Paintable paintable : container.components()) {
             Dimension2D preferredSize = paintable.preferredSize(g);
             paintable.paintOn(g, Dimensions.size(preferredSize.getWidth(), size.getHeight()));

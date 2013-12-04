@@ -31,7 +31,7 @@ public class BorderLayoutPainter implements Painter<Container> {
     }
 
     @Override
-    public void paint(Container container, Graphics2D g, Dimension2D size) {
+    public void paint(Container container, Graphics2D g, Dimension2D size, Palette palette) {
         for (Paintable paintable : container.components()) {
             Object context = container.contextFor(paintable);
             if (!(context instanceof Position))
