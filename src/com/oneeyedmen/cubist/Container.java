@@ -33,11 +33,11 @@ public class Container implements Paintable {
     }
 
     @Override
-    public Dimension preferredSize(Graphics2D g) {
+    public Dimension2D preferredSize(Graphics2D g) {
         return painter().preferredSize(this, g);
     }
 
-    protected HorizontalListPainter painter() {
+    protected Painter<Container> painter() {
         return DEFAULT_PAINTER;
     }
 }
