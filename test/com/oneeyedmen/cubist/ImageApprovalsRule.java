@@ -8,24 +8,37 @@ import org.rococoa.okeydoke.junit.BinaryApprovalsRule;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
 import java.awt.*;
+import java.awt.geom.Dimension2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class ImageApprovalsRule extends BinaryApprovalsRule {
 
-    public static ImageApprovalsRule fileSystemRule(String sourceRoot) {
-        return new ImageApprovalsRule(ApproverFactories.binaryFileSystemApproverFactory(new File(sourceRoot), ".png"));
+    public static ImageApprovalsRule fileSystemRule(String sourceRoot, int width, int height) {
+        return new ImageApprovalsRule(
+                ApproverFactories.binaryFileSystemApproverFactory(new File(sourceRoot), ".png"),
+                width, height);
     }
 
-    private final BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+    private final int width;
+    private final int height;
 
-    public ImageApprovalsRule(ApproverFactory<BinaryApprover> factory) {
+    private final BufferedImage image;
+
+    public ImageApprovalsRule(ApproverFactory<BinaryApprover> factory, int width, int height) {
         super(factory);
+        this.width = width;
+        this.height = height;
+        image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
     }
 
     public Graphics2D graphics() {
         return (Graphics2D) image.getGraphics();
+    }
+
+    public Dimension2D size() {
+        return Dimensions.size(width, height);
     }
 
     public void assertSatisfied() {

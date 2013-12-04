@@ -3,7 +3,6 @@ package com.oneeyedmen.cubist;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.awt.*;
 import java.io.IOException;
 
 import static com.oneeyedmen.cubist.Label.label;
@@ -11,7 +10,7 @@ import static com.oneeyedmen.cubist.Label.label;
 public class HorizontalListPainterTest {
 
     @Rule
-    public ImageApprovalsRule approver = ImageApprovalsRule.fileSystemRule("test");
+    public ImageApprovalsRule approver = ImageApprovalsRule.fileSystemRule("test", 100, 100);
 
     private final HorizontalListPainter painter = new HorizontalListPainter();
 
@@ -22,7 +21,6 @@ public class HorizontalListPainterTest {
         container.add(label("World"), null);
         container.add(label("!"), null);
 
-        Graphics2D graphics = approver.graphics();
-        painter.paint(container, graphics, new Dimension(100, 100));
+        painter.paint(container, approver.graphics(), approver.size());
     }
 }
