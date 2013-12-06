@@ -16,7 +16,7 @@ public class BorderLayoutPainterTest {
 
     @Test
     public void paint_North_and_South() throws IOException {
-        Container container = new Container();
+        ContainerView container = new ContainerView();
         container.add(label("North"), BorderLayoutPainter.Position.NORTH);
         container.add(label("Jackdaws love my big sphinx of quartz"), BorderLayoutPainter.Position.SOUTH);
         painter.paint(container, approver.graphics(), approver.size(), null);

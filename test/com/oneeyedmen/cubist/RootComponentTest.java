@@ -1,6 +1,7 @@
 package com.oneeyedmen.cubist;
 
 import com.oneeyedmen.test.WindowShower;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.swing.*;
@@ -13,10 +14,10 @@ import static com.oneeyedmen.cubist.Label.label;
 
 public class RootComponentTest {
 
-//    @Ignore("manual")
+    @Ignore("manual")
     @Test
     public void show() throws InterruptedException {
-        Container container = new Container(new BorderLayoutPainter());
+        ContainerView container = new ContainerView(new BorderLayoutPainter());
         final Label northLabel = label("North");
         container.add(northLabel, BorderLayoutPainter.Position.NORTH);
         container.add(label("South"), BorderLayoutPainter.Position.SOUTH);

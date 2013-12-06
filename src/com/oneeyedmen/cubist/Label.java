@@ -3,7 +3,7 @@ package com.oneeyedmen.cubist;
 import java.awt.*;
 import java.awt.geom.Dimension2D;
 
-public class Label implements Paintable, Bounded {
+public class Label implements Paintable, Bounded, Containable {
 
     private static final LabelPainter DEFAULT_PAINTER = new LabelPainter();
     private static final Palette DEFAULT_PALETTE = Palettes.defaultFor(Label.class);
@@ -11,6 +11,8 @@ public class Label implements Paintable, Bounded {
     private final LabelModel model;
     private final Bounds bounds = new Bounds(0, 0, 0, 0);
     private final ChangeListener<Object> myChangeListener = new MyChangeListener();
+
+    private Container container = null;
 
     public static Label label(String text) {
         return new Label(new LabelModel(text));
@@ -48,14 +50,24 @@ public class Label implements Paintable, Bounded {
         return bounds;
     }
 
+    @Override
+    public void setContainer(Container container) {
+        this.container = container;
+    }
+
+    @Override
+    public Container container() {
+        return container;
+    }
+
     private class MyChangeListener implements ChangeListener<Object> {
         @Override
         public void stateChanged(Object subject) {
-            repaint();
+            requestRepaint();
         }
     }
 
-    private void repaint() {
-        Repainter.current().addDirtyRegion(this, bounds());
+    private void requestRepaint() {
+        container().requestRepaint(this, bounds());
     }
 }

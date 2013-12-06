@@ -16,7 +16,7 @@ public class HorizontalListPainterTest {
 
     @Test
     public void paint() throws IOException {
-        Container container = new Container();
+        ContainerView container = new ContainerView();
         container.add(label("Hello"), null);
         container.add(label("World"), null);
         container.add(label("!"), null);

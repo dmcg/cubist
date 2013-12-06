@@ -1,52 +1,10 @@
 package com.oneeyedmen.cubist;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
 
-import java.awt.*;
-import java.awt.geom.Dimension2D;
-import java.util.Map;
+public interface Container {
 
-public class Container implements Paintable {
+    ImmutableList<Paintable> contents();
 
-    private static final HorizontalListPainter DEFAULT_PAINTER = new HorizontalListPainter();
-
-    private final ListModel<Paintable> components = new ListModel<Paintable>();
-    private final Map<Paintable, Object> contexts = Maps.newHashMap();
-    private final Painter<Container> painter;
-
-    public Container() {
-        this(DEFAULT_PAINTER);
-    }
-
-    public Container(Painter<Container> painter) {
-        this.painter = painter;
-    }
-
-    public void add(Paintable paintable, Object context) {
-        components.add(paintable);
-        contexts.put(paintable, context);
-    }
-
-    public ImmutableList<Paintable> components() {
-        return components.items();
-    }
-
-    public Object contextFor(Paintable paintable) {
-        return contexts.get(paintable);
-    }
-
-    @Override
-    public void paintOn(Graphics2D g, Dimension2D size) {
-        painter().paint(this, g, size, null);
-    }
-
-    @Override
-    public Dimension2D preferredSize(Graphics2D g) {
-        return painter().preferredSize(this, g);
-    }
-
-    public Painter<Container> painter() {
-        return painter;
-    }
+    void requestRepaint(Paintable paintable, Bounds bounds);
 }
