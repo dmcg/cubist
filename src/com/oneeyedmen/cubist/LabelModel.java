@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LabelModel {
 
-    private final List<ChangeListener<LabelModel>> listeners = Lists.newArrayListWithExpectedSize(1);
+    private final List<ChangeListener<? super LabelModel>> listeners = Lists.newArrayListWithExpectedSize(1);
 
     private String text;
 
@@ -18,7 +18,7 @@ public class LabelModel {
         return text;
     }
 
-    public void addListener(ChangeListener<LabelModel> listener) {
+    public void addListener(ChangeListener<? super LabelModel> listener) {
         listeners.add(listener);
     }
 
@@ -30,7 +30,7 @@ public class LabelModel {
     }
 
     private void notifyListeners() {
-        for (ChangeListener<LabelModel> listener : listeners) {
+        for (ChangeListener<? super LabelModel> listener : listeners) {
             listener.stateChanged(this);
         }
     }

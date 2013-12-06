@@ -13,6 +13,15 @@ public class Container implements Paintable {
 
     private final ListModel<Paintable> components = new ListModel<Paintable>();
     private final Map<Paintable, Object> contexts = Maps.newHashMap();
+    private final Painter<Container> painter;
+
+    public Container() {
+        this(DEFAULT_PAINTER);
+    }
+
+    public Container(Painter<Container> painter) {
+        this.painter = painter;
+    }
 
     public void add(Paintable paintable, Object context) {
         components.add(paintable);
@@ -37,7 +46,7 @@ public class Container implements Paintable {
         return painter().preferredSize(this, g);
     }
 
-    protected Painter<Container> painter() {
-        return DEFAULT_PAINTER;
+    public Painter<Container> painter() {
+        return painter;
     }
 }

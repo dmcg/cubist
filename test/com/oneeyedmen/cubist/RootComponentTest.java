@@ -1,26 +1,64 @@
 package com.oneeyedmen.cubist;
 
 import com.oneeyedmen.test.WindowShower;
-import org.junit.Ignore;
 import org.junit.Test;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import java.awt.*;
 
 import static com.oneeyedmen.cubist.Label.label;
 
 public class RootComponentTest {
 
-    @Ignore("manual")
+//    @Ignore("manual")
     @Test
     public void show() throws InterruptedException {
-        Container container = new Container() {
-            @Override
-            protected Painter<Container> painter() {
-                return new BorderLayoutPainter();
-            }
-        };
-        container.add(label("North"), BorderLayoutPainter.Position.NORTH);
+        Container container = new Container(new BorderLayoutPainter());
+        final Label northLabel = label("North");
+        container.add(northLabel, BorderLayoutPainter.Position.NORTH);
         container.add(label("South"), BorderLayoutPainter.Position.SOUTH);
 
-        RootComponent rootComponent = new RootComponent(container);
-        new WindowShower(rootComponent).showMaximizedFor(10000);
+        JPanel panel = new JPanel(new BorderLayout());
+        JTextField editor = new JTextField();
+        panel.add(editor, BorderLayout.SOUTH);
+        panel.add(new RootComponent(container), BorderLayout.CENTER);
+
+        editor.getDocument().addDocumentListener(new SynchonisingDocumentListener(northLabel));
+
+        new WindowShower(panel).showMaximizedFor(10000);
+    }
+
+    private void setLabelText(DocumentEvent e, Label label) {
+        try {
+            label.model().setText(e.getDocument().getText(0, e.getDocument().getLength()));
+        } catch (BadLocationException x) {
+            throw new RuntimeException(x);
+        }
+    }
+
+    private class SynchonisingDocumentListener implements DocumentListener {
+        private final Label label;
+
+        public SynchonisingDocumentListener(Label label) {
+            this.label = label;
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            setLabelText(e, label);
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            setLabelText(e, label);
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            setLabelText(e, label);
+        }
     }
 }
