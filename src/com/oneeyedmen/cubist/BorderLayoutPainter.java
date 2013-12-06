@@ -3,7 +3,7 @@ package com.oneeyedmen.cubist;
 import java.awt.*;
 import java.awt.geom.Dimension2D;
 
-public class BorderLayoutPainter implements Painter<Container> {
+public class BorderLayoutPainter implements Painter<ContainerView> {
 
     public enum Position {
         NORTH {
@@ -31,8 +31,8 @@ public class BorderLayoutPainter implements Painter<Container> {
     }
 
     @Override
-    public void paint(Container container, Graphics2D g, Dimension2D size, Palette palette) {
-        for (Paintable paintable : container.components()) {
+    public void paint(ContainerView container, Graphics2D g, Dimension2D size, Palette palette) {
+        for (Paintable paintable : container.contents()) {
             Object context = container.contextFor(paintable);
             if (!(context instanceof Position))
                 throw new IllegalStateException("Expected a Position");
@@ -42,7 +42,7 @@ public class BorderLayoutPainter implements Painter<Container> {
 
 
     @Override
-    public Dimension preferredSize(Container thing, Graphics2D g) {
+    public Dimension preferredSize(ContainerView thing, Graphics2D g) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
