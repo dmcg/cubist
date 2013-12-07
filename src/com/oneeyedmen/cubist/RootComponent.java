@@ -4,6 +4,9 @@ import com.google.common.collect.ImmutableList;
 
 import java.awt.*;
 
+/**
+ * The bridge between Cubist and AWT.
+ */
 public class RootComponent extends Component implements Container {
 
     private final Paintable paintable;
@@ -26,8 +29,8 @@ public class RootComponent extends Component implements Container {
 
     @Override
     public void requestRepaint(Paintable paintable, Bounds bounds) {
-        // repaint(bounds.x(), bounds.y(), bounds.w(), bounds.h());
-            // will work when Bounded's have their bounds set when laid out
-        repaint();
+        // TODO - better rounding
+        repaint((int) bounds.getX(), (int) bounds.getY(),
+                (int) bounds.getWidth(), (int) bounds.getHeight());
     }
 }

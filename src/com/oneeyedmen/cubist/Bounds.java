@@ -2,47 +2,24 @@ package com.oneeyedmen.cubist;
 
 import com.google.common.collect.Lists;
 
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-public class Bounds {
+public class Bounds extends Rectangle2D.Double {
 
     private final List<ChangeListener<Bounds>> listeners = Lists.newArrayListWithExpectedSize(1);
 
-    private int x;
-    private int y;
-    private int w;
-    private int h;
-
-    public Bounds(int x, int y, int w, int h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-    }
-
-    public Rectangle2D toRectangle() {
-        return new Rectangle(x, y, w, h);
+    public Bounds(double x, double y, double w, double h) {
+        super(x, y, w, h);
     }
 
     public void addListener(ChangeListener<Bounds> listener) {
         listeners.add(listener);
     }
 
-    public int x() {
-        return x;
-    }
-
-    public int y() {
-        return y;
-    }
-
-    public int w() {
-        return w;
-    }
-
-    public int h() {
-        return h;
+    @Override
+    public void setRect(Rectangle2D r) {
+        super.setRect(r);
+        // TODO - notify listeners
     }
 }

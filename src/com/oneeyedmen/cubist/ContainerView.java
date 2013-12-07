@@ -40,8 +40,11 @@ public class ContainerView implements Paintable, Container, Containable, Bounded
     @Override
     public void requestRepaint(Paintable paintable, Bounds bounds) {
         Bounds myBounds = bounds();
-        container().requestRepaint(paintable, new Bounds(
-                myBounds.x() + bounds.x(), myBounds.y() + bounds.y(), bounds.w(), bounds.h()));
+        container().requestRepaint(paintable,
+                new Bounds(
+                        myBounds.getX() + bounds.getX(),
+                        myBounds.getY() + bounds.getY(),
+                        bounds.getWidth(), bounds.getHeight()));
     }
 
     public Object contextFor(Paintable paintable) {

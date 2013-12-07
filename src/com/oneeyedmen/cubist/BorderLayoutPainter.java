@@ -8,26 +8,22 @@ public class BorderLayoutPainter implements Painter<ContainerView> {
     public enum Position {
         NORTH {
             @Override
-            protected void paint(Paintable paintable, Graphics2D g, Dimension2D size) {
-                Dimension2D preferredSize = paintable.preferredSize(g);
+            protected Bounds place(Dimension2D size, Dimension2D preferredSize) {
                 double centerX = (size.getWidth() - preferredSize.getWidth()) / 2;
-                g.translate(centerX, 0);
-                paintable.paintOn(g, Dimensions.size(size.getWidth(), preferredSize.getHeight()));
+                return new Bounds(centerX, 0, size.getWidth(),
+                        preferredSize.getHeight());
             }
         },
         SOUTH {
             @Override
-            protected void paint(Paintable paintable, Graphics2D g, Dimension2D size) {
-                Dimension2D preferredSize = paintable.preferredSize(g);
+            protected Bounds place(Dimension2D size, Dimension2D preferredSize) {
                 double centerX = (size.getWidth() - preferredSize.getWidth()) / 2;
-                g.translate(centerX, size.getHeight() - preferredSize.getHeight());
-                paintable.paintOn(g, Dimensions.size(size.getWidth(), preferredSize.getHeight()));
+                return new Bounds(centerX, size.getHeight() - preferredSize.getHeight(),
+                        size.getWidth(), preferredSize.getHeight());
             }
         };
 
-        protected void paint(Paintable paintable, Graphics2D g, Dimension2D size) {
-
-        }
+        protected abstract Bounds place(Dimension2D size, Dimension2D preferredSize);
     }
 
     @Override
@@ -36,7 +32,14 @@ public class BorderLayoutPainter implements Painter<ContainerView> {
             Object context = container.contextFor(paintable);
             if (!(context instanceof Position))
                 throw new IllegalStateException("Expected a Position");
-            ((Position) context).paint(paintable, (Graphics2D) g.create(), size);
+            Graphics2D newG = (Graphics2D) g.create();
+            Bounds bounds = ((Position) context).place(size, paintable.preferredSize(newG));
+            newG.translate(bounds.getX(), bounds.getY());
+            paintable.paintOn(newG, Dimensions.size(bounds.getWidth(), bounds.getHeight()));
+            if (paintable instanceof Bounded) {
+                // TODO - not here - this will make a repaint when we listen to bounds
+                ((Bounded) paintable).bounds().setRect(bounds);
+            }
         }
     }
 
