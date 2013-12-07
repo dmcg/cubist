@@ -1,7 +1,6 @@
 package com.oneeyedmen.cubist.models;
 
-import com.oneeyedmen.cubist.ChangeListener;
-import com.oneeyedmen.cubist.models.LabelModel;
+import com.oneeyedmen.cubist.listeners.ChangeListener;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
@@ -16,7 +15,7 @@ public class LabelModelTest {
     @SuppressWarnings("unchecked")
     private final ChangeListener<LabelModel> listener = mockery.mock(ChangeListener.class);
 
-    private final LabelModel model = new LabelModel("Banana");
+    private final LabelModel model = new StringLabelModel("Banana");
 
     @Test public void ctor() {
         assertEquals("Banana", model.text());
@@ -41,7 +40,7 @@ public class LabelModelTest {
         model.addListener(listener);
 
         mockery.checking(new Expectations() {{
-            never(listener).stateChanged(with(any(LabelModel.class)));
+            never(listener).stateChanged(with(any(StringLabelModel.class)));
         }});
         model.setText("Banana");
     }

@@ -2,6 +2,7 @@ package com.oneeyedmen.cubist;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import com.oneeyedmen.cubist.models.ArrayListListModel;
 import com.oneeyedmen.cubist.models.ListModel;
 
 import java.util.Map;
@@ -10,7 +11,7 @@ public class ContainerView extends BaseView implements Container {
 
     private static final HorizontalListPainter DEFAULT_PAINTER = new HorizontalListPainter();
 
-    private final ListModel<Paintable> components = new ListModel<Paintable>();
+    private final ListModel<Paintable> components = new ArrayListListModel<Paintable>();
     private final Map<Paintable, Object> contexts = Maps.newHashMap();
 
     public ContainerView() {

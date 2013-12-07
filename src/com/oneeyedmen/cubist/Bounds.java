@@ -1,6 +1,7 @@
 package com.oneeyedmen.cubist;
 
 import com.google.common.collect.Lists;
+import com.oneeyedmen.cubist.listeners.ChangeListener;
 
 import java.awt.geom.Rectangle2D;
 import java.util.List;

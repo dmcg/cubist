@@ -1,6 +1,8 @@
 package com.oneeyedmen.cubist;
 
+import com.oneeyedmen.cubist.listeners.ChangeListener;
 import com.oneeyedmen.cubist.models.LabelModel;
+import com.oneeyedmen.cubist.models.StringLabelModel;
 
 public class Label extends BaseView {
 
@@ -12,7 +14,7 @@ public class Label extends BaseView {
 
 
     public static Label label(String text) {
-        return new Label(new LabelModel(text));
+        return new Label(new StringLabelModel(text));
     }
 
     public Label(LabelModel model) {
