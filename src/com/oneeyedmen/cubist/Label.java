@@ -1,7 +1,6 @@
 package com.oneeyedmen.cubist;
 
-import java.awt.*;
-import java.awt.geom.Dimension2D;
+import com.oneeyedmen.cubist.models.LabelModel;
 
 public class Label extends BaseView {
 

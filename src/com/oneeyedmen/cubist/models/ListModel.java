@@ -1,7 +1,8 @@
-package com.oneeyedmen.cubist;
+package com.oneeyedmen.cubist.models;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.oneeyedmen.cubist.ListListener;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package com.oneeyedmen.cubist;
+package com.oneeyedmen.cubist.models;
 
+import com.oneeyedmen.cubist.ListListener;
+import com.oneeyedmen.cubist.models.ListModel;
 import org.jmock.Expectations;
-import org.jmock.integration.junit4.JUnit4Mockery;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestRule;
 
 import static org.junit.Assert.assertEquals;
 

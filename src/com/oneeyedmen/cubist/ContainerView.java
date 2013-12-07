@@ -2,6 +2,7 @@ package com.oneeyedmen.cubist;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
+import com.oneeyedmen.cubist.models.ListModel;
 
 import java.util.Map;
 

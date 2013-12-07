@@ -1,5 +1,7 @@
-package com.oneeyedmen.cubist;
+package com.oneeyedmen.cubist.models;
 
+import com.oneeyedmen.cubist.ChangeListener;
+import com.oneeyedmen.cubist.models.LabelModel;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
