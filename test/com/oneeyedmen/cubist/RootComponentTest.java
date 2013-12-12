@@ -27,7 +27,7 @@ public class RootComponentTest {
         panel.add(editor, BorderLayout.SOUTH);
         panel.add(new RootComponent(container), BorderLayout.CENTER);
 
-        editor.getDocument().addDocumentListener(new SynchonisingDocumentListener(northLabel));
+        editor.getDocument().addDocumentListener(new SynchronisingDocumentListener(northLabel));
 
         new WindowShower(panel).showMaximizedFor(10000);
     }
@@ -40,10 +40,10 @@ public class RootComponentTest {
         }
     }
 
-    private class SynchonisingDocumentListener implements DocumentListener {
+    private class SynchronisingDocumentListener implements DocumentListener {
         private final Label label;
 
-        public SynchonisingDocumentListener(Label label) {
+        public SynchronisingDocumentListener(Label label) {
             this.label = label;
         }
 
