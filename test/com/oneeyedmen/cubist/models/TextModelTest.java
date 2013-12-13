@@ -8,14 +8,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class LabelModelTest {
+public class TextModelTest {
 
     @Rule public final JUnitRuleMockery mockery = new JUnitRuleMockery();
 
     @SuppressWarnings("unchecked")
-    private final ChangeListener<LabelModel> listener = mockery.mock(ChangeListener.class);
+    private final ChangeListener<TextModel> listener = mockery.mock(ChangeListener.class);
 
-    private final LabelModel model = new StringLabelModel("Banana");
+    private final TextModel model = new StringTextModel("Banana");
 
     @Test public void ctor() {
         assertEquals("Banana", model.text());
@@ -40,7 +40,7 @@ public class LabelModelTest {
         model.addListener(listener);
 
         mockery.checking(new Expectations() {{
-            never(listener).stateChanged(with(any(StringLabelModel.class)));
+            never(listener).stateChanged(with(any(StringTextModel.class)));
         }});
         model.setText("Banana");
     }

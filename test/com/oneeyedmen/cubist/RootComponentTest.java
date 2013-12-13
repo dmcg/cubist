@@ -10,7 +10,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
 
-import static com.oneeyedmen.cubist.Label.label;
+import static com.oneeyedmen.cubist.TextView.label;
 
 public class RootComponentTest {
 
@@ -18,8 +18,8 @@ public class RootComponentTest {
     @Test
     public void show() throws InterruptedException {
         ContainerView container = new ContainerView(new BorderLayoutPainter());
-        final Label northLabel = label("North");
-        container.add(northLabel, BorderLayoutPainter.Position.NORTH);
+        final TextView northTextView = label("North");
+        container.add(northTextView, BorderLayoutPainter.Position.NORTH);
         container.add(label("South"), BorderLayoutPainter.Position.SOUTH);
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -27,39 +27,39 @@ public class RootComponentTest {
         panel.add(editor, BorderLayout.SOUTH);
         panel.add(new RootComponent(container), BorderLayout.CENTER);
 
-        editor.getDocument().addDocumentListener(new SynchronisingDocumentListener(northLabel));
+        editor.getDocument().addDocumentListener(new SynchronisingDocumentListener(northTextView));
 
         new WindowShower(panel).showMaximizedFor(10000);
     }
 
-    private void setLabelText(DocumentEvent e, Label label) {
+    private void setLabelText(DocumentEvent e, TextView textView) {
         try {
-            label.model().setText(e.getDocument().getText(0, e.getDocument().getLength()));
+            textView.model().setText(e.getDocument().getText(0, e.getDocument().getLength()));
         } catch (BadLocationException x) {
             throw new RuntimeException(x);
         }
     }
 
     private class SynchronisingDocumentListener implements DocumentListener {
-        private final Label label;
+        private final TextView textView;
 
-        public SynchronisingDocumentListener(Label label) {
-            this.label = label;
+        public SynchronisingDocumentListener(TextView textView) {
+            this.textView = textView;
         }
 
         @Override
         public void insertUpdate(DocumentEvent e) {
-            setLabelText(e, label);
+            setLabelText(e, textView);
         }
 
         @Override
         public void removeUpdate(DocumentEvent e) {
-            setLabelText(e, label);
+            setLabelText(e, textView);
         }
 
         @Override
         public void changedUpdate(DocumentEvent e) {
-            setLabelText(e, label);
+            setLabelText(e, textView);
         }
     }
 }

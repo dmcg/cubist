@@ -1,29 +1,29 @@
 package com.oneeyedmen.cubist;
 
 import com.oneeyedmen.cubist.listeners.ChangeListener;
-import com.oneeyedmen.cubist.models.LabelModel;
-import com.oneeyedmen.cubist.models.StringLabelModel;
+import com.oneeyedmen.cubist.models.TextModel;
+import com.oneeyedmen.cubist.models.StringTextModel;
 
-public class Label extends BaseView {
+public class TextView extends BaseView {
 
     private static final LabelPainter DEFAULT_PAINTER = new LabelPainter();
-    private static final Palette DEFAULT_PALETTE = Palettes.defaultFor(Label.class);
+    private static final Palette DEFAULT_PALETTE = Palettes.defaultFor(TextView.class);
 
-    private final LabelModel model;
+    private final TextModel model;
     private final ChangeListener<Object> myChangeListener = new MyChangeListener();
 
 
-    public static Label label(String text) {
-        return new Label(new StringLabelModel(text));
+    public static TextView label(String text) {
+        return new TextView(new StringTextModel(text));
     }
 
-    public Label(LabelModel model) {
+    public TextView(TextModel model) {
         super(DEFAULT_PAINTER, DEFAULT_PALETTE);
         this.model = model;
         model.addListener(myChangeListener);
     }
 
-    public LabelModel model() {
+    public TextModel model() {
         return model;
     }
 

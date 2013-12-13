@@ -8,15 +8,15 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertNotNull;
 
-public class LabelPainterTest {
+public class TextViewPainterTest {
 
     @Rule public ImageApprovalsRule approver = ImageApprovalsRule.fileSystemRule("test", 100, 100);
 
     private final LabelPainter painter = new LabelPainter();
-    private final Label label = Label.label("Hello World");
+    private final TextView textView = TextView.label("Hello World");
 
     @Test public void render() throws IOException {
-        painter.paint(label, approver.graphics(), approver.size(), label.palette());
+        painter.paint(textView, approver.graphics(), approver.size(), textView.palette());
     }
 
     @Test public void render_with_palette() throws IOException {
@@ -24,7 +24,7 @@ public class LabelPainterTest {
         assertNotNull(font);
 
         SimplePalette palette = new SimplePalette(font, Color.GREEN);
-        painter.paint(label, approver.graphics(), approver.size(), palette);
+        painter.paint(textView, approver.graphics(), approver.size(), palette);
     }
 
 }

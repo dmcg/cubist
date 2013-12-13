@@ -5,13 +5,13 @@ import com.oneeyedmen.cubist.listeners.ChangeListener;
 
 import java.util.List;
 
-public class StringLabelModel implements LabelModel {
+public class StringTextModel implements TextModel {
 
-    private final List<ChangeListener<? super LabelModel>> listeners = Lists.newArrayListWithExpectedSize(1);
+    private final List<ChangeListener<? super TextModel>> listeners = Lists.newArrayListWithExpectedSize(1);
 
     private String text;
 
-    public StringLabelModel(String text) {
+    public StringTextModel(String text) {
         this.text = text;
     }
 
@@ -21,7 +21,7 @@ public class StringLabelModel implements LabelModel {
     }
 
     @Override
-    public void addListener(ChangeListener<? super LabelModel> listener) {
+    public void addListener(ChangeListener<? super TextModel> listener) {
         listeners.add(listener);
     }
 
@@ -34,7 +34,7 @@ public class StringLabelModel implements LabelModel {
     }
 
     private void notifyListeners() {
-        for (ChangeListener<? super LabelModel> listener : listeners) {
+        for (ChangeListener<? super TextModel> listener : listeners) {
             listener.stateChanged(this);
         }
     }

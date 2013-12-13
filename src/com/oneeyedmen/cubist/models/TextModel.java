@@ -2,10 +2,10 @@ package com.oneeyedmen.cubist.models;
 
 import com.oneeyedmen.cubist.listeners.ChangeListener;
 
-public interface LabelModel {
+public interface TextModel {
     String text();
 
-    void addListener(ChangeListener<? super LabelModel> listener);
+    void addListener(ChangeListener<? super TextModel> listener);
 
     void setText(String text);
 }

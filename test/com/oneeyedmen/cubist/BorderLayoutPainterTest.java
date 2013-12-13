@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static com.oneeyedmen.cubist.Label.label;
+import static com.oneeyedmen.cubist.TextView.label;
 
 public class BorderLayoutPainterTest {
 
