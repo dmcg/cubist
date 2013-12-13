@@ -6,7 +6,7 @@ import com.oneeyedmen.cubist.models.StringTextModel;
 
 public class TextView extends BaseView {
 
-    private static final LabelPainter DEFAULT_PAINTER = new LabelPainter();
+    private static final TextViewPainter DEFAULT_PAINTER = new TextViewPainter();
     private static final Palette DEFAULT_PALETTE = Palettes.defaultFor(TextView.class);
 
     private final TextModel model;
