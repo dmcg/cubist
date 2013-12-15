@@ -16,15 +16,15 @@ public class TextViewPainterTest {
     private final TextView textView = TextView.label("Hello World");
 
     @Test public void render() throws IOException {
-        painter.paint(textView, approver.graphics(), approver.size(), textView.palette());
+        painter.paint(textView, approver.graphics(), textView.palette(), approver.size());
     }
 
     @Test public void render_with_palette() throws IOException {
         Font font = new Font("Arial", Font.BOLD, 18);
         assertNotNull(font);
 
-        SimplePalette palette = new SimplePalette(font, Color.GREEN);
-        painter.paint(textView, approver.graphics(), approver.size(), palette);
+        SimplePalette palette = new SimplePalette(font, Color.GREEN, Color.GRAY);
+        painter.paint(textView, approver.graphics(), palette, approver.size());
     }
 
 }

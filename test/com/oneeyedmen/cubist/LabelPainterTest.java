@@ -16,15 +16,15 @@ public class LabelPainterTest {
     private final Label label = new Label("Hello World");
 
     @Test public void render() throws IOException {
-        painter.paint(label, approver.graphics(), approver.size(), label.palette());
+        painter.paint(label, approver.graphics(), label.palette(), approver.size());
     }
 
     @Test public void render_with_palette() throws IOException {
         Font font = new Font("Arial", Font.BOLD, 18);
         assertNotNull(font);
 
-        SimplePalette palette = new SimplePalette(font, Color.GREEN);
-        painter.paint(label, approver.graphics(), approver.size(), palette);
+        SimplePalette palette = new SimplePalette(font, Color.GREEN, Color.GRAY);
+        painter.paint(label, approver.graphics(), palette, approver.size());
     }
 
 }

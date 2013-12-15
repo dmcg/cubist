@@ -33,12 +33,12 @@ public class BaseView implements View {
 
     @Override
     public void paintOn(Graphics2D g, Dimension2D size) {
-        painter().paint(this, g, size, palette());
+        painter().paint(this, g, palette(), size);
     }
 
     @Override
     public Dimension2D preferredSize(Graphics2D g) {
-        return painter().preferredSize(this, g);
+        return painter().preferredSize(this, g, palette());
     }
 
     protected Painter painter() {

@@ -19,6 +19,6 @@ public class BorderLayoutPainterTest {
         ContainerView container = new ContainerView();
         container.add(label("North"), BorderLayoutPainter.Position.NORTH);
         container.add(label("Jackdaws love my big sphinx of quartz"), BorderLayoutPainter.Position.SOUTH);
-        painter.paint(container, approver.graphics(), approver.size(), null);
+        painter.paint(container, approver.graphics(), null, approver.size());
     }
 }

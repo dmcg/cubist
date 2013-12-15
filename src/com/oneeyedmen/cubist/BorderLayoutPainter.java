@@ -27,7 +27,7 @@ public class BorderLayoutPainter implements Painter<ContainerView> {
     }
 
     @Override
-    public void paint(ContainerView container, Graphics2D g, Dimension2D size, Palette palette) {
+    public void paint(ContainerView container, Graphics2D g, Palette palette, Dimension2D size) {
         for (Paintable paintable : container.contents()) {
             Object context = container.contextFor(paintable);
             if (!(context instanceof Position))
@@ -45,7 +45,7 @@ public class BorderLayoutPainter implements Painter<ContainerView> {
 
 
     @Override
-    public Dimension preferredSize(ContainerView thing, Graphics2D g) {
+    public Dimension preferredSize(ContainerView thing, Graphics2D g, Palette palette) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
